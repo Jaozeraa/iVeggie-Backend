@@ -1,8 +1,8 @@
 import { User } from '../entities/User';
 import { PrismaClient } from '@prisma/client';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 
-export default class UsersRepository implements IUsersRepository {
+export class UsersRepository implements IUsersRepository {
   private prisma: PrismaClient;
 
   constructor() {

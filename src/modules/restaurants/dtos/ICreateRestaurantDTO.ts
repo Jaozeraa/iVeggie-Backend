@@ -1,4 +1,4 @@
-export default interface ICreateUserDTO {
+export interface ICreateRestaurantDTO {
   name: string;
   image: string;
   wallpaper: string;

@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { CreateRestaurantService } from '@modules/restaurants/services/CreateRestaurant.service';
+import { CreateRestaurantService } from '@modules/restaurants/services/CreateRestaurantService';
 
-export default class RestaurantsController {
+export class RestaurantsController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, image, wallpaper, phoneNumber, address } = request.body;
     const createRestaurant = container.resolve(CreateRestaurantService);

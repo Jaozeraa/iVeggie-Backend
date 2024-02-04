@@ -1,6 +1,6 @@
 import { Restaurant } from '../entities/Restaurant';
 import { PrismaClient } from '@prisma/client';
-import IRestaurantsRepository from '@modules/restaurants/repositories/IRestaurantsRepository';
+import { IRestaurantsRepository } from '@modules/restaurants/repositories/IRestaurantsRepository';
 
 export class RestaurantsRepository implements IRestaurantsRepository {
   private prisma: PrismaClient;
