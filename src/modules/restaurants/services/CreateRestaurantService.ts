@@ -1,9 +1,56 @@
+import { injectable, inject } from 'tsyringe';
+
+import { IRestaurantsRepository } from '../repositories/IRestaurantsRepository';
+import { IStorageProvider } from '@shared/container/providers/StorageProvider/models/IStorageProvider';
+import { AppError } from '@shared/errors/AppError';
+import { ErrorsEnum } from '@shared/errors/ErrorsEnum';
+
+interface IRequest {
+  name: string;
+  phoneNumber: string;
+  address: string;
+  imageFilename: string;
+  wallpaperFilename: string;
+}
+@injectable()
 export class CreateRestaurantService {
-  constuctor() {}
+  constructor(
+    @inject('RestaurantsRepository')
+    private restaurantsRepository: IRestaurantsRepository,
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider,
+  ) {}
+  async execute({
+    address,
+    imageFilename,
+    name,
+    phoneNumber,
+    wallpaperFilename,
+  }: IRequest) {
+    const restaurantExists = await this.restaurantsRepository.findOne({
+      phoneNumber,
+    });
 
-  async execute(props: any) {
-    console.log('Create Restaurant Service', { props });
+    if (restaurantExists) {
+      throw new AppError(ErrorsEnum.restaurantAlreadyExists);
+    }
 
-    return props;
+    const formattedImageFilename = await this.storageProvider.saveFile(
+      imageFilename,
+    );
+    const formattedWallpaperFilename = await this.storageProvider.saveFile(
+      wallpaperFilename,
+    );
+
+    const restaurant = await this.restaurantsRepository.create({
+      address: address,
+      name: name,
+      image: formattedImageFilename,
+      phoneNumber: phoneNumber,
+      wallpaper: formattedWallpaperFilename,
+      rate: 5,
+    });
+
+    return restaurant;
   }
 }

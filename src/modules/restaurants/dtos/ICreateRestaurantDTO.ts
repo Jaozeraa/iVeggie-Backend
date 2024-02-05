@@ -4,4 +4,5 @@ export interface ICreateRestaurantDTO {
   wallpaper: string;
   phoneNumber: string;
   address: string;
+  rate: number;
 }

@@ -1,9 +1,8 @@
-import { isUuid } from 'uuidv4';
-
 import { CreateUserService } from '../services/CreateUserService';
-import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
+import { FakeUsersRepository } from '../repositories/fakes/FakeUsersRepository';
 import { FakeHashProvider } from '../providers/HashProvider/fakes/FakeHashProvider';
 import { AppError } from '@shared/errors/AppError';
+import { validate } from 'uuid';
 
 let fakeUsersRepository: FakeUsersRepository;
 let createUser: CreateUserService;
@@ -23,7 +22,7 @@ describe('CreateUser', () => {
     });
 
     expect(user).toHaveProperty('id');
-    expect(isUuid(user.id)).toBe(true);
+    expect(validate(user.id)).toBe(true);
   });
   it('should not be able to create an user with the same email as another user', async () => {
     await createUser.execute({

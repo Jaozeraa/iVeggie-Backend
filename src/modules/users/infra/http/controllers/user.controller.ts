@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import { CreateUserService } from '@modules/users/services/CreateUserService';
+import { excludeProperty } from '@shared/utils/excludeProperty';
 
 export class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -10,6 +11,6 @@ export class UsersController {
 
     const user = await createUser.execute({ name, email, password });
 
-    return response.json(user);
+    return response.json(excludeProperty(user, ['password']));
   }
 }

@@ -3,6 +3,8 @@ import { injectable, inject } from 'tsyringe';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 import { IUsersRepository } from '../repositories/IUsersRepository';
 import { AppError } from '@shared/errors/AppError';
+import { ICreateUserDTO } from '../dtos/ICreateUserDTO';
+import { ErrorsEnum } from '@shared/errors/ErrorsEnum';
 
 @injectable()
 export class CreateUserService {
@@ -13,12 +15,13 @@ export class CreateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  async execute(props: any) {
-    const { email } = props;
-    const userWithSameEmail = await this.usersRepository.findByEmail(email);
+  async execute(props: ICreateUserDTO) {
+    const userWithSameEmail = await this.usersRepository.findOne({
+      email: props.email,
+    });
 
     if (userWithSameEmail) {
-      throw new AppError('Email address already used.');
+      throw new AppError(ErrorsEnum.emailAlreadyExists);
     }
 
     const hashedPassword = await this.hashProvider.generateHash(props.password);

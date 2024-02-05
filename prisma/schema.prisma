@@ -23,9 +23,37 @@ model Restaurant {
   id          String   @id @default(uuid())
   name        String
   address     String
-  phoneNumber String
+  phoneNumber String  @unique
   image       String
   wallpaper   String
+  rate        Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  dishes Dish[]
+}
+
+model Dish {
+  id          String   @id @default(uuid())
+  name        String
+  resume     String
+  description String 
+  image       String
+  price   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  restaurantId String
+  restaurant  Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
+model UserToken {
+  id          String   @id @default(uuid())
+
+  pin String 
+
+  userId String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+

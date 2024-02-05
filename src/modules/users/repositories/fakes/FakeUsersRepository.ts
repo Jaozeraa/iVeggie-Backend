@@ -3,7 +3,7 @@ import { IUsersRepository } from '../IUsersRepository';
 import { ICreateUserDTO } from '@modules/users/dtos/ICreateUserDTO';
 import { User } from '@modules/users/infra/prisma/entities/User';
 
-class FakeUsersRepository implements IUsersRepository {
+export class FakeUsersRepository implements IUsersRepository {
   private users: User[] = [];
   public async create({
     name,
@@ -17,8 +17,8 @@ class FakeUsersRepository implements IUsersRepository {
       name,
       email,
       password,
-      updated_at: new Date(),
-      created_at: new Date(),
+      updatedAt: new Date(),
+      createdAt: new Date(),
     });
 
     this.users.unshift(user);
@@ -26,11 +26,34 @@ class FakeUsersRepository implements IUsersRepository {
     return user;
   }
 
-  public async findByEmail(email: string): Promise<User | null> {
-    const user = this.users.find(findUser => findUser.email === email);
+  public async findOne(props: Partial<User>): Promise<User | null> {
+    const user = this.users.find(findUser => {
+      return Object.entries(props).every(
+        ([key, value]) => findUser[key as keyof User] === value,
+      );
+    });
 
     return user || null;
   }
-}
 
-export default FakeUsersRepository;
+  public async findById(id: string): Promise<User | null> {
+    const user = this.users.find(findUser => findUser.id === id);
+
+    return user || null;
+  }
+
+  public async delete(id: string): Promise<void> {
+    const userIndex = this.users.findIndex(user => user.id === id);
+
+    this.users.splice(userIndex, 1);
+  }
+
+  public async save(user: User): Promise<User> {
+    const findIndex = this.users.findIndex(
+      findUuser => findUuser.id === user.id,
+    );
+    this.users[findIndex] = user;
+
+    return user;
+  }
+}
