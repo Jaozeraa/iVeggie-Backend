@@ -27,7 +27,7 @@ export class ResetPasswordService {
     const userToken = await this.userTokensRepository.findByPin(pin);
 
     if (!userToken) {
-      throw new AppError(ErrorsEnum.expiredToken);
+      throw new AppError(ErrorsEnum.invalidToken);
     }
 
     const user = await this.usersRepository.findById(userToken.userId);

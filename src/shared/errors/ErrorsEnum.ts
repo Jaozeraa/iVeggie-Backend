@@ -6,4 +6,5 @@ export enum ErrorsEnum {
   emailAlreadyExists = 'emailAlreadyExists',
   userNotFound = 'userNotFound',
   expiredToken = 'expiredToken',
+  invalidToken = 'invalidToken',
 }
