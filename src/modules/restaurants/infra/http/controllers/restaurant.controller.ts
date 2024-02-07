@@ -11,7 +11,7 @@ import { ListRestaurantDetailsService } from '@modules/restaurants/services/List
 
 export class RestaurantsController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, phoneNumber, address } = request.body;
+    const { name, phoneNumber, address, latitude, longitude } = request.body;
     const createRestaurant = container.resolve(CreateRestaurantService);
 
     const restaurant = await createRestaurant.execute({
@@ -20,6 +20,8 @@ export class RestaurantsController {
       wallpaperFilename: (request.files as any).wallpaper[0].filename,
       phoneNumber,
       address,
+      latitude: Number(latitude),
+      longitude: Number(longitude),
     });
 
     return response.json(formatRestaurant(restaurant));

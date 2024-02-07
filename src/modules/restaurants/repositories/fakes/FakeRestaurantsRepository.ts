@@ -11,6 +11,9 @@ export class FakeRestaurantsRepository implements IRestaurantsRepository {
     image,
     phoneNumber,
     wallpaper,
+    latitude,
+    longitude,
+    rate = 5,
   }: ICreateRestaurantDTO): Promise<Restaurant> {
     const restaurant = {} as Restaurant;
 
@@ -21,6 +24,9 @@ export class FakeRestaurantsRepository implements IRestaurantsRepository {
       image,
       phoneNumber,
       wallpaper,
+      latitude,
+      longitude,
+      rate,
       updatedAt: new Date(),
       createdAt: new Date(),
     });

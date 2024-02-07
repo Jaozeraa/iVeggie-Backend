@@ -11,6 +11,8 @@ interface IRequest {
   address: string;
   imageFilename: string;
   wallpaperFilename: string;
+  latitude: number;
+  longitude: number;
 }
 @injectable()
 export class CreateRestaurantService {
@@ -26,6 +28,8 @@ export class CreateRestaurantService {
     name,
     phoneNumber,
     wallpaperFilename,
+    latitude,
+    longitude,
   }: IRequest) {
     const restaurantExists = await this.restaurantsRepository.findOne({
       phoneNumber,
@@ -49,6 +53,8 @@ export class CreateRestaurantService {
       phoneNumber: phoneNumber,
       wallpaper: formattedWallpaperFilename,
       rate: 5,
+      latitude,
+      longitude,
     });
 
     return restaurant;

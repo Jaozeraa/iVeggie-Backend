@@ -22,7 +22,11 @@ export class RestaurantsRepository implements IRestaurantsRepository {
   }
 
   async findAll(): Promise<Restaurant[]> {
-    return this.prisma.restaurant.findMany({});
+    return this.prisma.restaurant.findMany({
+      orderBy: {
+        rate: 'desc',
+      },
+    });
   }
 
   async findOne(props: Restaurant): Promise<Restaurant | null> {
@@ -66,6 +70,9 @@ export class RestaurantsRepository implements IRestaurantsRepository {
             },
           },
         ],
+      },
+      orderBy: {
+        rate: 'desc',
       },
     });
 

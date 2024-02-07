@@ -29,6 +29,8 @@ describe('ListDishDetailsService', () => {
       wallpaperFilename: 'wallpaper.jpg',
       phoneNumber: '123123',
       address: 'address',
+      latitude: 0,
+      longitude: 0,
     });
 
     const dish = await fakeDishesRepository.create({

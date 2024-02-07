@@ -24,6 +24,8 @@ describe('CreateRestaurant', () => {
       wallpaperFilename: 'wallpaper.jpg',
       phoneNumber: '123123',
       address: 'address',
+      latitude: 0,
+      longitude: 0,
     });
 
     expect(restaurant).toHaveProperty('id');
@@ -36,6 +38,8 @@ describe('CreateRestaurant', () => {
       wallpaperFilename: 'wallpaper.jpg',
       phoneNumber: '123123',
       address: 'address',
+      latitude: 0,
+      longitude: 0,
     });
 
     await expect(
@@ -45,6 +49,8 @@ describe('CreateRestaurant', () => {
         wallpaperFilename: 'wallpaper.jpg',
         phoneNumber: '123123',
         address: 'address',
+        latitude: 0,
+        longitude: 0,
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

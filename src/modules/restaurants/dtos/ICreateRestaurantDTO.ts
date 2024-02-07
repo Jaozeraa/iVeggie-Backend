@@ -5,4 +5,6 @@ export interface ICreateRestaurantDTO {
   phoneNumber: string;
   address: string;
   rate: number;
+  latitude: number;
+  longitude: number;
 }

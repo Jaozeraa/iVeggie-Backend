@@ -34,11 +34,13 @@ describe('CreateDish', () => {
       wallpaperFilename: 'wallpaper.jpg',
       phoneNumber: '123123',
       address: 'address',
+      latitude: 0,
+      longitude: 0,
     });
 
     const dish = await createDish.execute({
       name: 'Example Dish',
-      price: 10,
+      price: '10',
       restaurantId: restaurant.id,
       description: 'description',
       imageFilename: 'image.jpg',
@@ -53,7 +55,7 @@ describe('CreateDish', () => {
     await expect(
       createDish.execute({
         name: 'Example Dish',
-        price: 10,
+        price: '10',
         restaurantId: 'non-existing-id',
         description: 'description',
         imageFilename: 'image.jpg',

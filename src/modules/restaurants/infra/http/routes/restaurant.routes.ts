@@ -23,6 +23,8 @@ restaurantRouter.post(
       phoneNumber: z.any(),
       image: z.any(),
       wallpaper: z.any(),
+      latitude: z.any(),
+      longitude: z.any(),
     }),
   }),
   upload.fields([{ name: 'image' }, { name: 'wallpaper' }]),

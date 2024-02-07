@@ -25,6 +25,8 @@ describe('FindRestaurants', () => {
       wallpaperFilename: 'wallpaper.jpg',
       phoneNumber: '123123',
       address: 'address',
+      latitude: 0,
+      longitude: 0,
     });
 
     const foundRestaurants = await findRestaurants.execute({
@@ -40,6 +42,8 @@ describe('FindRestaurants', () => {
       wallpaperFilename: 'wallpaper.jpg',
       phoneNumber: '123123',
       address: 'address',
+      latitude: 0,
+      longitude: 0,
     });
 
     const foundRestaurants = await findRestaurants.execute({
@@ -55,6 +59,8 @@ describe('FindRestaurants', () => {
       wallpaperFilename: 'wallpaper.jpg',
       phoneNumber: '123123',
       address: 'address',
+      latitude: 0,
+      longitude: 0,
     });
 
     const foundRestaurants = await findRestaurants.execute({
@@ -70,6 +76,8 @@ describe('FindRestaurants', () => {
       wallpaperFilename: 'wallpaper.jpg',
       phoneNumber: '123123',
       address: 'address',
+      latitude: 0,
+      longitude: 0,
     });
 
     const foundRestaurants = await findRestaurants.execute({
@@ -85,6 +93,8 @@ describe('FindRestaurants', () => {
       wallpaperFilename: 'wallpaper.jpg',
       phoneNumber: '123123',
       address: 'address',
+      latitude: 0,
+      longitude: 0,
     });
 
     const foundRestaurants = await findRestaurants.execute({
