@@ -49,6 +49,6 @@ Welcome to iVeggie, your go-to delivery app for fresh and healthy veggies! This 
 
 ### License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://github.com/Jaozeraa/iVeggie-Backend/blob/main/LICENSE).
 
 ![Cover](https://github.com/Jaozeraa/iVeggie-Mobile/assets/49006178/51dcb6f0-7421-4ff1-9d01-8da2d1f68bd7)
