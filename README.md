@@ -27,7 +27,6 @@ Welcome to iVeggie, your go-to delivery app for fresh and healthy veggies! This 
 - Install Expo CLI globally: `npm install -g expo-cli`
 - Install Docker: https://docs.docker.com/engine/install/
 - Install Dbeaver Community: https://dbeaver.io
-- [Additional prerequisites based on your backend setup]
 
 ### Installation
 
